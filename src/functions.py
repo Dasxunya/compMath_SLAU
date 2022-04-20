@@ -2,7 +2,7 @@ import random
 import colors as color
 from math import fabs
 import re
-
+import datetime
 
 # Функция, если нужно будет округлить
 def toFixed(num):
@@ -118,6 +118,7 @@ class Calculator:
             print(color.YELLOW, "Полученная система:\n")
             self.print_coeff()
 
+            start = datetime.datetime.now()
             self.make_triangle()
             print("\n", color.YELLOW, 'Матрица треугольного вида:\n')
             self.print_coeff()
@@ -125,7 +126,10 @@ class Calculator:
             # Определитель
             self.get_det()
 
-            print('\n', color.YELLOW, 'Столбец неизвестных:')
+            timedelta = datetime.datetime.now() - start
+            print("Время работы метода: " + str(timedelta) + "\n")
+
+            print(color.YELLOW, 'Столбец неизвестных:')
             self.comp_vector_x()
             self.print_vector_x()
 
@@ -205,7 +209,7 @@ class Calculator:
             i += 1
         if self.swap_counter % 2 == 1:
             self.det *= -1
-        print('\n', color.YELLOW, 'Определитель', ' = ', self.det)
+        print('\n', color.YELLOW, 'Определитель', ' = ', self.det, "\n")
         if self.det == 0:
             print(color.RED, 'Нет решения, т.к. система вырожденная')
             return ArithmeticError

@@ -17,7 +17,6 @@ while True:
         if number == 1:
             print(color.YELLOW, '\n\tВы выбрали ввод данных через файл:')
             file_function(input('\tВведите имя файла:'))
-
         elif number == 2:
             print(color.YELLOW, '\n\tВы выбрали ввод данных через консоль:')
             console_function()

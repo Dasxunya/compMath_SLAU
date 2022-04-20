@@ -30,7 +30,7 @@ def file_function(filename):
                 for i in line:
                     if (re.search('(\d{1,}\.{1}\d{1,})', i) is None) and (not i.isnumeric()):
                         print(color.RED,
-                              'Проверьте формат введенных данных (вещественные числа должны быть разделены точкой).')
+                              'Проверьте формат введенных данных (вещественные числа должны быть разделены точкой).\n')
                         return
                 array.append(list(line))
             file.close()
@@ -63,19 +63,19 @@ def console_function():
             compute.calculate()
             del compute
         else:
-            print(color.RED, "Проверьте правильность ввода!")
+            print(color.RED, "Проверьте правильность ввода!\n")
             return
     except ValueError:
         print(color.RED, "Неверные аргументы ввода!")
 
 
-# TODO: Функция генерирующая значения для матрицы
+# Функция генерирующая значения для матрицы
 def generate_function():
     try:
         array = []
         n = int(input("\tВведите количество строк в уравнении (число не должно превышать 20):\n\t>"))
         if (n <= 20) and (n > 1):
-            print(color.YELLOW, "Генерирую матрицу...")
+            print(color.YELLOW, "Генерирую матрицу...\n")
             for i in range(n):
                 line = [random.randint(-20, 20) + random.uniform(-1, 1) for _ in range(n + 1)]
                 array.append(line)
@@ -115,11 +115,11 @@ class Calculator:
 
     def calculate(self):
         try:
-            print(color.YELLOW, "\t\nПолученная система:\n")
+            print(color.YELLOW, "Полученная система:\n")
             self.print_coeff()
 
             self.make_triangle()
-            print('\n', color.YELLOW, 'Матрица треугольного вида:\n')
+            print("\n", color.YELLOW, 'Матрица треугольного вида:\n')
             self.print_coeff()
 
             # Определитель
@@ -225,7 +225,7 @@ class Calculator:
 
     def print_vector_x(self):
         i = 0
-        print(color.YELLOW, 'Решение системы:')
+        print("\t", color.YELLOW, 'Решение системы:\n')
         self.vector.reverse()
         while i < self.n:
             print('\t', 'x[' + str(i + 1) + ']:', self.vector[i])
@@ -235,7 +235,7 @@ class Calculator:
     # Подсчет невязки r1 ... rn
     def print_residuals(self):
         i = 0
-        print(color.YELLOW, 'Невязки:')
+        print("\t\t", color.YELLOW, 'Невязки:\n')
         while i < self.n:
             res = 0
             j = 0

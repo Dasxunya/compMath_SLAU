@@ -169,7 +169,7 @@ class Calculator:
         if max_el != 0:
             return max_el
         if max_el == 0:
-            print("\nНет решений:(")
+            print("\nНет решений:(\n")
             return ArithmeticError
 
     # Приведение к треугольному виду

@@ -205,7 +205,7 @@ class Calculator:
             i += 1
         if self.swap_counter % 2 == 1:
             self.det *= -1
-        print('\n', color.YELLOW, 'Определитель', ' = ', self.det, '\n')
+        print('\n', color.YELLOW, 'Определитель', ' = ', self.det)
         if self.det == 0:
             print(color.RED, 'Нет решения, т.к. система вырожденная')
             return ArithmeticError

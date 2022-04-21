@@ -28,9 +28,10 @@ def file_function(filename):
             for row in file:
                 line = list(row.split())
                 for i in line:
+                    #не пропускает числа -7 отрицательные без точки, можно было исправить регуляркой
                     if (re.search('(\d{1,}\.{1}\d{1,})', i) is None) and (not i.isnumeric()):
                         print(color.RED,
-                              'Проверьте формат введенных данных (вещественные числа должны быть разделены точкой).\n')
+                              'Проверьте формат введенных данных (вещественные числа должны быть разделены точкой).')
                         return
                 array.append(list(line))
             file.close()
@@ -63,19 +64,19 @@ def console_function():
             compute.calculate()
             del compute
         else:
-            print(color.RED, "Проверьте правильность ввода!\n")
+            print(color.RED, "Проверьте правильность ввода!")
             return
     except ValueError:
         print(color.RED, "Неверные аргументы ввода!")
 
 
-# Функция генерирующая значения для матрицы
+# TODO: Функция генерирующая значения для матрицы
 def generate_function():
     try:
         array = []
         n = int(input("\tВведите количество строк в уравнении (число не должно превышать 20):\n\t>"))
         if (n <= 20) and (n > 1):
-            print(color.YELLOW, "Генерирую матрицу...\n")
+            print(color.YELLOW, "Генерирую матрицу...")
             for i in range(n):
                 line = [random.randint(-20, 20) + random.uniform(-1, 1) for _ in range(n + 1)]
                 array.append(line)
@@ -115,12 +116,12 @@ class Calculator:
 
     def calculate(self):
         try:
-            print(color.YELLOW, "Полученная система:\n")
+            print(color.YELLOW, "\t\nПолученная система:\n")
             self.print_coeff()
 
             start = datetime.datetime.now()
             self.make_triangle()
-            print("\n", color.YELLOW, 'Матрица треугольного вида:\n')
+            print('\n', color.YELLOW, 'Матрица треугольного вида:\n')
             self.print_coeff()
 
             # Определитель
@@ -129,7 +130,7 @@ class Calculator:
             timedelta = datetime.datetime.now() - start
             print(color.YELLOW, "Время работы метода: " + str(timedelta) + "\n")
 
-            print(color.YELLOW, 'Столбец неизвестных:')
+            print('\n', color.YELLOW, 'Столбец неизвестных:')
             self.comp_vector_x()
             self.print_vector_x()
 
@@ -169,7 +170,7 @@ class Calculator:
         if max_el != 0:
             return max_el
         if max_el == 0:
-            print("\nНет решений:(\n")
+            print("\nНет решений:(")
             return ArithmeticError
 
     # Приведение к треугольному виду
@@ -209,7 +210,7 @@ class Calculator:
             i += 1
         if self.swap_counter % 2 == 1:
             self.det *= -1
-        print('\n', color.YELLOW, 'Определитель', ' = ', self.det, "\n")
+        print('\n', color.YELLOW, 'Определитель', ' = ', self.det, '\n')
         if self.det == 0:
             print(color.RED, 'Нет решения, т.к. система вырожденная')
             return ArithmeticError
@@ -229,7 +230,7 @@ class Calculator:
 
     def print_vector_x(self):
         i = 0
-        print("\t", color.YELLOW, 'Решение системы:\n')
+        print(color.YELLOW, 'Решение системы:')
         self.vector.reverse()
         while i < self.n:
             print('\t', 'x[' + str(i + 1) + ']:', self.vector[i])
@@ -239,7 +240,7 @@ class Calculator:
     # Подсчет невязки r1 ... rn
     def print_residuals(self):
         i = 0
-        print("\t\t", color.YELLOW, 'Невязки:\n')
+        print(color.YELLOW, 'Невязки:')
         while i < self.n:
             res = 0
             j = 0

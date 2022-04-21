@@ -127,7 +127,7 @@ class Calculator:
             self.get_det()
 
             timedelta = datetime.datetime.now() - start
-            print("Время работы метода: " + str(timedelta) + "\n")
+            print(color.YELLOW, "Время работы метода: " + str(timedelta) + "\n")
 
             print(color.YELLOW, 'Столбец неизвестных:')
             self.comp_vector_x()
